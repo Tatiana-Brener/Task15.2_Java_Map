@@ -3,7 +3,6 @@ package ru.netology.manager;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.netology.domain.File;
 
 import java.util.*;
 
@@ -15,50 +14,35 @@ public class FileOpenManager {
 
     Map<String, String> files = new HashMap<>();
 
-    public Map<String, String> addNewApplication(String fileExtension, String application) {
-        Map<String, String> addedApplication = new HashMap<>();
-        addedApplication.put(fileExtension, application);
-        return addedApplication;
+    public Map <String, String> addNewApplication(String fileExtension, String application) {
+        files.put(fileExtension, application);
+        return files;
     }
 
-    public String getApplication(String fileExtension) {
-        for(Map.Entry file : files.entrySet()) {
-            if (file.getKey() == fileExtension) {
-                return files.get(fileExtension);
+    public String getApplicationByFileExtension(String fileExtension) {
+        for (String file : files.keySet()) {
+            if (files.containsKey(fileExtension.toLowerCase())) {
+                return files.get(fileExtension.toLowerCase());
             }
         }
         return null;
     }
 
     public Map<String, String> removeApplicationBindingToExtension(String fileExtension) {
-        for(Map.Entry file : files.entrySet()) {
-            if(file.getKey() == fileExtension) {
-                files.remove(fileExtension);
+        for(String file : files.keySet()) {
+            if(files.containsKey(fileExtension.toLowerCase())) {
+                files.remove(fileExtension.toLowerCase());
                 return files;
             }
         }
         return files;
     }
 
-//    метод с учетом игнорирования регистра названия расширения
-
-//    public Map<String, String> removeApplicationBindingToExtension2(String fileExtension) {
-//        for(String file : files.keySet()) {
-//            if(files.containsKey(fileExtension) && file.equalsIgnoreCase(fileExtension)) {
-//                files.remove(fileExtension);
-//                return files;
-//            }
-//        }
-//        return files;
-//    }
-
     public Set<String> getListOfAllRegisteredExtensions() {
-        Set<String> extensions = files.keySet();
-        return extensions;
+        return files.keySet();
     }
 
     public Set<String> getListOfAllApplicationsBindingToExtensions() {
-        Set<String> applications = new HashSet<>(files.values());
-            return applications;
+        return new HashSet<>(files.values());
         }
 }
