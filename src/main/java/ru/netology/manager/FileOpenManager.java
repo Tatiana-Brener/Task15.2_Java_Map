@@ -15,26 +15,22 @@ public class FileOpenManager {
     Map<String, String> files = new HashMap<>();
 
     public Map <String, String> addNewApplication(String fileExtension, String application) {
-        files.put(fileExtension, application);
+        files.put(fileExtension.toLowerCase(), application);
         return files;
     }
 
     public String getApplicationByFileExtension(String fileExtension) {
-        for (String file : files.keySet()) {
-            if (files.containsKey(fileExtension.toLowerCase())) {
-                return files.get(fileExtension.toLowerCase());
-            }
+        if (files.containsKey(fileExtension.toLowerCase())) {
+            return files.get(fileExtension.toLowerCase());
         }
         return null;
     }
 
     public Map<String, String> removeApplicationBindingToExtension(String fileExtension) {
-        for(String file : files.keySet()) {
             if(files.containsKey(fileExtension.toLowerCase())) {
                 files.remove(fileExtension.toLowerCase());
                 return files;
             }
-        }
         return files;
     }
 
