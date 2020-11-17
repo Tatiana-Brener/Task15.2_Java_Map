@@ -29,21 +29,21 @@ class FileOpenManagerTest {
 
     @Test
     public void shouldAddNewApplication() {
-        String fileExtension = ".doc";
-        String application = "Microsoft Word";
+        String newFileExtension = ".doc";
+        String newApplication = "Microsoft Word";
 
-        Map<String, String> expected = Map.of(".doc", "Microsoft Word");
-        Map<String, String> actual = manager.addNewApplication(fileExtension, application);
+        Map<String, String> expected = Map.of(fileExtensionPdf, applicationForPdf, fileExtensionJpg, applicationForJpg, fileExtensionPpt, applicationForPpt, newFileExtension, newApplication);
+        Map<String, String> actual = manager.addNewApplication(newFileExtension, newApplication);
 
         assertEquals(expected, actual);
     }
 
     @Test
     public void shouldGetApplicationByFileExtensionIfExists() {
-        String fileExtension = ".pdf";
+        String fileExtension = ".PDF";
 
         String expected = "Adobe Acrobat Reader";
-        String actual = manager.getApplication(fileExtension);
+        String actual = manager.getApplicationByFileExtension(fileExtension);
 
         assertEquals(expected, actual);
     }
@@ -53,14 +53,14 @@ class FileOpenManagerTest {
         String fileExtension = ".doc";
 
         String expected = null;
-        String actual = manager.getApplication(fileExtension);
+        String actual = manager.getApplicationByFileExtension(fileExtension);
 
         assertEquals(expected, actual);
     }
 
     @Test
     public void shouldRemoveApplicationBindingToExtensionIfExists() {
-        String fileExtension = ".ppt";
+        String fileExtension = ".PPT";
 
         Map<String, String> expected = Map.of(fileExtensionPdf, applicationForPdf, fileExtensionJpg, applicationForJpg);
         Map<String, String> actual = manager.removeApplicationBindingToExtension(fileExtension);
