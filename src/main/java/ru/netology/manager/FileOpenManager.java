@@ -38,6 +38,18 @@ public class FileOpenManager {
         return files;
     }
 
+//    метод с учетом игнорирования регистра названия расширения
+
+//    public Map<String, String> removeApplicationBindingToExtension2(String fileExtension) {
+//        for(String file : files.keySet()) {
+//            if(files.containsKey(fileExtension) && file.equalsIgnoreCase(fileExtension)) {
+//                files.remove(fileExtension);
+//                return files;
+//            }
+//        }
+//        return files;
+//    }
+
     public Set<String> getListOfAllRegisteredExtensions() {
         return files.keySet();
     }
