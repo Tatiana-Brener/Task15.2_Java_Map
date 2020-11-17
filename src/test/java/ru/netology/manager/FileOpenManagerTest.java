@@ -29,11 +29,12 @@ class FileOpenManagerTest {
 
     @Test
     public void shouldAddNewApplication() {
-        String newFileExtension = ".doc";
+
+        String newExtension = ".doc";
         String newApplication = "Microsoft Word";
 
-        Map<String, String> expected = Map.of(fileExtensionPdf, applicationForPdf, fileExtensionJpg, applicationForJpg, fileExtensionPpt, applicationForPpt, newFileExtension, newApplication);
-        Map<String, String> actual = manager.addNewApplication(newFileExtension, newApplication);
+        Map<String, String> expected = Map.of(fileExtensionPdf, applicationForPdf, fileExtensionJpg, applicationForJpg, fileExtensionPpt, applicationForPpt,newExtension, newApplication);
+        Map<String, String> actual = manager.addNewApplication(newExtension, newApplication);
 
         assertEquals(expected, actual);
     }
